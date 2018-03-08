@@ -1,19 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using Exp.Domain.Interfaces.UserIdentity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Exp.Services.Api.Controllers
 {
+    [AllowAnonymous]
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
+        private readonly IUser _user;
+        public ValuesController(IUser user)
+        {
+            _user = user;
+        }
+
         // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            return new string[] { "value1", "value2" , _user.Logado().ToString()};
         }
 
         // GET api/values/5

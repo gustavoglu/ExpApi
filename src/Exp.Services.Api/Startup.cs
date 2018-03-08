@@ -1,9 +1,10 @@
-﻿using Exp.Infra.Data.Context;
-using Exp.Infra.Identity.Models;
-using Exp.Infra.IoC;
+﻿using Exp.Infra.IoC;
+using Exp.Services.Api.Configurations;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -21,18 +22,18 @@ namespace Exp.Services.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc(opt => {
+                var policy = new AuthorizationPolicyBuilder()
+                .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
+                .RequireAuthenticatedUser()
+                .Build();
 
-            services.AddMvc();
-            services.AddIdentity<Usuario, IdentityRole>(cfg =>
-            {
-                cfg.Password.RequireDigit = false;
-                cfg.Password.RequireLowercase = false;
-                cfg.Password.RequireUppercase = false;
-                cfg.Password.RequireNonAlphanumeric = false;
-                cfg.Password.RequiredLength = 6;
-            })
-                .AddEntityFrameworkStores<ContextSQLS>()
-                .AddDefaultTokenProviders();
+                opt.Filters.Add(new AuthorizeFilter(policy));
+            });
+
+            IdentityConfiguration.Configure(services);
+
+            AuthConfigurations.Configure(services, Configuration);
 
             NativeInjection.AddNativeInjection(services);
         }

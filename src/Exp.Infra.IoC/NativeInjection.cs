@@ -4,6 +4,7 @@ using Exp.Domain.Interfaces.UserIdentity;
 using Exp.Infra.Data.Context;
 using Exp.Infra.Data.Repository;
 using Exp.Infra.Data.UoW;
+using Exp.Infra.Identity.Context;
 using Exp.Infra.Identity.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -14,8 +15,9 @@ namespace Exp.Infra.IoC
     {
         public static void AddNativeInjection(IServiceCollection services)
         {
-            //Identit
+            //Identity
             services.AddScoped<IUser, AspNetUser>();
+            services.AddScoped<ContextIdentity>();
 
             //Infra
             services.AddScoped<IUnitOfWork, UnitOfWork>();
