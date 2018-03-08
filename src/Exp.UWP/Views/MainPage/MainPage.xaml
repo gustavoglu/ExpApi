@@ -1,0 +1,76 @@
+﻿<Page
+    x:Class="Exp.UWP.Views.MainPage.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Exp.UWP.Views.MainPage"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Name="grid_principal" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+        <ParallaxView Source="{Binding ElementName=grid_principal}" VerticalShift="300" HorizontalShift="300">
+            <Image x:Name="city" Source="/Assets/Images/city.jpg" ></Image>
+        </ParallaxView>
+        <RelativePanel Name="rp_principal" >
+            <!--<TextBox Name="tb_usuario" MinWidth="250" 
+                     RelativePanel.AlignHorizontalCenterWithPanel="True" 
+                     RelativePanel.AlignVerticalCenterWithPanel="True"
+                     PlaceholderText="Usuario"
+                     Margin="5"
+                     Header="Usuario"/>
+
+            <PasswordBox Name="tb_senha" MinWidth="250" 
+                     RelativePanel.AlignHorizontalCenterWithPanel="True" 
+                     RelativePanel.AlignVerticalCenterWithPanel="True"
+                     RelativePanel.Below="tb_usuario"
+                     PlaceholderText="Senha"
+                     Margin="5"
+                     Header="Senha"/>-->
+            <RelativePanel 
+                x:Name="rp_buttons" 
+                Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}" 
+                RelativePanel.AlignHorizontalCenterWithPanel="True" 
+                RelativePanel.AlignVerticalCenterWithPanel="True" 
+                Padding="10,10,10,60"
+                BorderBrush="#2B6364"
+                BorderThickness="5"
+                Opacity="0.93"
+                >
+
+                <Image x:Name="image_logo"
+                       RelativePanel.AlignTopWithPanel="True"
+                       RelativePanel.AlignHorizontalCenterWithPanel="True"
+                       Source="/Assets/Images/logoaccist.png" 
+                       Height="100" 
+                       Width="200" CacheMode="BitmapCache">
+
+                </Image>
+
+                <Button x:Name="b_login"
+                    Click="b_login_Click"
+                    MinWidth="250"
+                    Margin="5"
+                    Background="#2B6364"
+                    RelativePanel.AlignHorizontalCenterWithPanel="True"
+                    RelativePanel.Below="image_logo"
+                    >
+                    <TextBlock x:Name="t_loginText" 
+                               Text="Login" 
+                               Foreground="White"/>
+                </Button>
+
+                <Button Name="b_registrar"
+                    RelativePanel.Below="b_login"
+                    Content="Registrar-se"
+                    HorizontalAlignment="Stretch"
+                    RelativePanel.AlignLeftWith="b_login" 
+                    RelativePanel.AlignRightWith="b_login"
+                    Margin="5"
+                    Background="White"
+                    Foreground="#2B6364"
+                    />
+            </RelativePanel>
+        </RelativePanel>
+    </Grid>
+</Page>

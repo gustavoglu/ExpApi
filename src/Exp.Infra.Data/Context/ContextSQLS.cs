@@ -1,7 +1,11 @@
 ﻿using Exp.Domain.Core.Models;
+using Exp.Domain.Interfaces.UserIdentity;
+using Exp.Domain.Models;
+using Exp.Infra.Data.Mappings;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,9 +14,31 @@ namespace Exp.Infra.Data.Context
 {
     public class ContextSQLS : DbContext
     {
+        private readonly IUser _user;
+
+        public ContextSQLS(IUser user)
+        {
+            _user = user;
+        }
+
+        public DbSet<Conta> Contas { get; set; }
+        public DbSet<Cliente> Clientes { get; set; }
+        public DbSet<ContaContato> ContaContatos { get; set; }
+        public DbSet<ContaEndereco> ContaEnderecos { get; set; }
+        public DbSet<ContaTipo> ContaTipos { get; set; }
+        public DbSet<Colaborador> Colaboradores { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.ApplyConfiguration(new ContaMap());
+            modelBuilder.ApplyConfiguration(new ContaContatoMap());
+            modelBuilder.ApplyConfiguration(new ContaEnderecoMap());
+            modelBuilder.ApplyConfiguration(new ContaTipoMap());
+            modelBuilder.ApplyConfiguration(new ClienteMap());
+            modelBuilder.ApplyConfiguration(new ColaboradorMap());
+
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -22,7 +48,7 @@ namespace Exp.Infra.Data.Context
                 .AddJsonFile("appsettings.json")
                 .Build();
 
-            optionsBuilder.UseSqlServer(builder.GetConnectionString(""));
+            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=exp_db;Trusted_Connection=True;MultipleActiveResultSets=true");
         }
 
         public override int SaveChanges()
@@ -31,25 +57,43 @@ namespace Exp.Infra.Data.Context
             var atualizados = ChangeTracker.Entries().Where(e => e.Entity is Entity && e.State == EntityState.Modified);
             var deletados = ChangeTracker.Entries().Where(e => e.Entity is Entity && e.State == EntityState.Deleted);
 
-            if (adicionados.Any()) AdicionaEntitys(adicionados);
-            if (atualizados.Any()) AtualizaEntitys(atualizados);
-            if (deletados.Any()) DeletaEntitys(deletados);
+            try
+            {
+                if (adicionados.Any()) AdicionaEntitys(adicionados);
+                if (atualizados.Any()) AtualizaEntitys(atualizados);
+                if (deletados.Any()) DeletaEntitys(deletados);
+
+            }
+            catch { }
 
             return base.SaveChanges();
         }
 
         private void AdicionaEntitys(IEnumerable<EntityEntry> adicionados)
         {
-
+            foreach (var adicionado in adicionados)
+            {
+                var entity = (Entity)adicionado.Entity;
+                entity.AtribuirCriacao(_user.UserNameLogado());
+            }
         }
         private void AtualizaEntitys(IEnumerable<EntityEntry> atualizados)
         {
-
+            foreach (var atualizado in atualizados)
+            {
+                var entity = (Entity)atualizado.Entity;
+                entity.AtribuirAtualizacao(_user.UserNameLogado());
+            }
         }
         private void DeletaEntitys(IEnumerable<EntityEntry> deletados)
         {
-
+            foreach (var deletado in deletados)
+            {
+                deletado.State = EntityState.Modified;
+                var entity = (Entity)deletado.Entity;
+                entity.AtribuirDelecao(_user.UserNameLogado());
+            }
         }
     }
-    
+
 }

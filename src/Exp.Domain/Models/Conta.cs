@@ -32,6 +32,8 @@ namespace Exp.Domain.Models
 
         public Guid Id_contaTipo { get; protected set; }
 
+        public ContaTipo ContaTipo { get; set; }
+
         public IEnumerable<ContaEndereco> Enderecos { get; set; }
 
         public IEnumerable<ContaContato> Contatos { get; set; }

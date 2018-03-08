@@ -17,5 +17,27 @@ namespace Exp.Domain.Core.Models
         public string DeletadoPor { get; protected set; }
         public DateTime? DeletadoEm { get; protected set; }
         public bool Deletado { get; protected set; } = false;
+
+        public void AtribuirCriacao(string criadoPor)
+        {
+            this.CriadoEm = DateTime.Now;
+            this.CriadoPor = criadoPor;
+        }
+
+        public void AtribuirAtualizacao (string atualizadoPor)
+        {
+            this.AtualizadoEm = DateTime.Now;
+            this.AtualizadoPor = atualizadoPor;
+        }
+
+        public void AtribuirDelecao(string deletadoPor)
+        {
+            this.AtualizadoPor = deletadoPor;
+            this.AtualizadoEm = DateTime.Now;
+            this.DeletadoEm = DateTime.Now;
+            this.DeletadoPor = deletadoPor;
+            this.Deletado = true;
+        }
+
     }
 }
