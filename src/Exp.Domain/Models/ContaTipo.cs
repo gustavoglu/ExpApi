@@ -5,6 +5,8 @@ namespace Exp.Domain.Models
 {
     public class ContaTipo : Entity
     {
+        private ContaTipo(){ }
+
         public ContaTipo(string descricao)
         {
             Descricao = descricao;

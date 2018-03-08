@@ -2,6 +2,7 @@
 using Exp.Domain.Interfaces.UoW;
 using Exp.Domain.Interfaces.UserIdentity;
 using Exp.Infra.Data.Context;
+using Exp.Infra.Data.Inicializers;
 using Exp.Infra.Data.Repository;
 using Exp.Infra.Data.UoW;
 using Exp.Infra.Identity.Context;
@@ -19,9 +20,12 @@ namespace Exp.Infra.IoC
             services.AddScoped<IUser, AspNetUser>();
             services.AddScoped<ContextIdentity>();
 
-            //Infra
+            //Infra Data
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<ContextSQLS>();
+
+            //Infrada Data Inicializers
+            services.AddTransient<ContaTipoInicializer>();
 
             // Repositorys
             services.AddScoped<IClienteRepository, ClienteRepository>();

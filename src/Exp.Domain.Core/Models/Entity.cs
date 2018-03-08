@@ -18,6 +18,11 @@ namespace Exp.Domain.Core.Models
         public DateTime? DeletadoEm { get; protected set; }
         public bool Deletado { get; protected set; } = false;
 
+        public void SetId(Guid id)
+        {
+            this.Id = id;
+        }
+
         public void AtribuirCriacao(string criadoPor)
         {
             this.CriadoEm = DateTime.Now;

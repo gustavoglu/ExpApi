@@ -17,6 +17,7 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.2" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Exp.Application\Exp.Application.csproj" />
     <ProjectReference Include="..\Exp.Infra.Data\Exp.Infra.Data.csproj" />
     <ProjectReference Include="..\Exp.Infra.Identity\Exp.Infra.Identity.csproj" />
     <ProjectReference Include="..\Exp.Infra.IoC\Exp.Infra.IoC.csproj" />
