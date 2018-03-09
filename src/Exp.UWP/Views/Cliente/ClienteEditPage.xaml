@@ -1,0 +1,59 @@
+﻿<Page
+    x:Class="Exp.UWP.Views.Cliente.ClienteEditPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Exp.UWP.Views.Cliente"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid x:Name="grid_principal" Padding="30" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Pivot>
+            <Pivot.Items>
+                <PivotItem Header="Dados">
+                    <PivotItem.Content>
+                        <StackPanel x:Name="sp_campos">
+                            <TextBox x:Name="tb_nome" Header="Nome" HorizontalContentAlignment="Stretch" Margin="5"/>
+                            <TextBox x:Name="tb_razaoSocial" Header="Razão Social" HorizontalContentAlignment="Stretch" Margin="5"/>
+                            <TextBox x:Name="tb_email" Header="E-mail" HorizontalContentAlignment="Stretch" Margin="5"/>
+                            <TextBox x:Name="tb_telefone" Header="Telefone" HorizontalContentAlignment="Stretch" Margin="5"/>
+                            <TextBox x:Name="tb_telefoneAd" Header="Telefone Adicional" HorizontalContentAlignment="Stretch" Margin="5"/>
+                            <TextBox x:Name="tb_documento" Header="Documento" HorizontalContentAlignment="Stretch" Margin="5"/>
+                            <ComboBox x:Name="cb_tipoDocumento" Header="Tipo Documento" HorizontalAlignment="Stretch" />
+                        </StackPanel>
+                    </PivotItem.Content>
+                </PivotItem>
+                <PivotItem Header="Endereços">
+                    <PivotItem.Content>
+                        <RelativePanel x:Name="rp_enderecos">
+                            <AppBar x:Name="cmdb_enderecos" IsOpen="True" Background="Transparent" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+                                <AppBarButton x:Name="abb_novoEndereco" HorizontalAlignment="Right" Click="abb_novoEndereco_Click" Icon="Add"/>
+                            </AppBar>
+                        </RelativePanel>
+                    </PivotItem.Content>
+                </PivotItem>
+                <PivotItem Header="Contatos">
+                    <PivotItem.Content>
+                        <RelativePanel x:Name="rp_contatos">
+                            <AppBar x:Name="cmdb_contatos" IsOpen="True" Background="Transparent" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+                                <AppBarButton x:Name="abb_novoContato" HorizontalAlignment="Right" Click="abb_novoEndereco_Click" Icon="Add"/>
+                            </AppBar>
+                        </RelativePanel>
+                    </PivotItem.Content>
+                </PivotItem>
+            </Pivot.Items>
+        </Pivot>
+        <FlyoutBase.AttachedFlyout>
+            <Flyout>
+                <StackPanel>
+                    <TextBox x:Name="tb_contatoNome" Header="Nome"  HorizontalAlignment="Stretch" Margin="5"/>
+                    <TextBox x:Name="tb_contatoTelefone " Header="Telefone"  HorizontalAlignment="Stretch" Margin="5"/>
+                    <TextBox x:Name="tb_contatoTelefoneAdd " Header="Telefone Adicional"  HorizontalAlignment="Stretch" Margin="5"/>
+                    <TextBox x:Name="tb_contatoEmail " Header="E-mail"  HorizontalAlignment="Stretch" Margin="5"/>
+                    <TextBox x:Name="tb_contatoFuncao" Header="Função"  HorizontalAlignment="Stretch" Margin="5"/>
+                    <TextBox x:Name="tb_contatoObs" Header="Observações" HorizontalAlignment="Stretch" Margin="5"/>
+                </StackPanel>
+            </Flyout>
+        </FlyoutBase.AttachedFlyout>
+    </Grid>
+</Page>
