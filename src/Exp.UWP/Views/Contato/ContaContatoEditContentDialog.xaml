@@ -1,0 +1,31 @@
+﻿<ContentDialog
+    x:Class="Exp.UWP.Views.Contato.ContaContatoEditContentDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Exp.UWP.Views.Contato"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="{x:Bind TituloDialog}"
+    PrimaryButtonText="Salvar"
+    SecondaryButtonText="Cancelar"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    SecondaryButtonClick="ContentDialog_SecondaryButtonClick">
+
+    <Grid MinWidth="300" >
+        <ScrollViewer>
+            <StackPanel>
+                <TextBlock x:Name="t_titulo" Text="{x:Bind Titulo}" Margin="5" Style="{ThemeResource SubheaderTextBlockStyle}"></TextBlock>
+                <TextBox x:Name="tb_contatoNome" Text="{x:Bind _contaContato.Nome,Mode=TwoWay}" Header="Nome"  HorizontalAlignment="Stretch" Margin="5"/>
+                <TextBox x:Name="tb_contatoTelefone" Text="{x:Bind _contaContato.Telefone,Mode=TwoWay}" Header="Telefone"  HorizontalAlignment="Stretch" Margin="5"/>
+                <TextBox x:Name="tb_contatoTelefoneAdd" Text="{x:Bind _contaContato.TelefoneAdicional,Mode=TwoWay}" Header="Telefone Adicional"  HorizontalAlignment="Stretch" Margin="5"/>
+                <TextBox x:Name="tb_contatoEmail" Text="{x:Bind _contaContato.Email,Mode=TwoWay}" Header="E-mail"  HorizontalAlignment="Stretch" Margin="5"/>
+                <TextBox x:Name="tb_contatoFuncao" Text="{x:Bind _contaContato.Funcao,Mode=TwoWay}" Header="Função"  HorizontalAlignment="Stretch" Margin="5"/>
+                <TextBox x:Name="tb_contatoObs" Text="{x:Bind _contaContato.Observacoes,Mode=TwoWay}" Header="Observações" HorizontalAlignment="Stretch" Margin="5"/>
+            </StackPanel>
+        </ScrollViewer>
+        <ProgressRing IsActive="False" MinWidth="100" MinHeight="100" />
+        <Grid Background="Transparent" Visibility="Collapsed" >
+        </Grid>
+    </Grid>
+</ContentDialog>

@@ -5,7 +5,12 @@ namespace Exp.Domain.Models
 {
     public class ContaEndereco : Entity
     {
-        public ContaEndereco(string rua, string numero, string complemento, string bairro, string cidade, string estado, string pais)
+        private ContaEndereco()
+        {
+
+        }
+
+        public ContaEndereco(string rua , string numero, string bairro, string cidade, string estado, string complemento = null,string pais = null)
         {
             Rua = rua;
             Numero = numero;
@@ -16,13 +21,13 @@ namespace Exp.Domain.Models
             Pais = pais;
         }
 
-        public string Rua { get; protected set; }
-        public string Numero { get; protected set; }
-        public string Complemento { get; protected set; }
-        public string Bairro { get; protected set; }
-        public string Cidade { get; protected set; }
-        public string Estado { get; protected set; }
-        public string Pais { get; protected set; }
+        public string Rua { get; set; }
+        public string Numero { get; set; }
+        public string Complemento { get; set; }
+        public string Bairro { get; set; }
+        public string Cidade { get; set; }
+        public string Estado { get; set; }
+        public string Pais { get; set; }
 
         public Guid Id_conta { get; protected set; }
 

@@ -1,5 +1,9 @@
-﻿using System;
+﻿using Exp.Domain.Models;
+using Exp.UWP.Views.Contato;
+using Exp.UWP.Views.Endereco;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -25,11 +29,39 @@ namespace Exp.UWP.Views.Cliente
         public ClienteEditPage()
         {
             this.InitializeComponent();
+            lv_contatos.ItemsSource = ContaCotatosMock();
+
         }
 
-        private void abb_novoEndereco_Click(object sender, RoutedEventArgs e)
+        ObservableCollection<ContaContato> ContaCotatosMock()
         {
+            return new ObservableCollection<ContaContato>(
+                new List<ContaContato>()
+            {
+                new ContaContato(Guid.Empty,"TESTE","TESTE","TESTE","TESTE","TESTE","TESTE"),
+                new ContaContato(Guid.Empty,"TESTE","TESTE","TESTE","TESTE","TESTE","TESTE"),
+                new ContaContato(Guid.Empty,"TESTE","TESTE","TESTE","TESTE","TESTE","TESTE"),
+                new ContaContato(Guid.Empty,"TESTE","TESTE","TESTE","TESTE","TESTE","TESTE"),
+                new ContaContato(Guid.Empty,"TESTE","TESTE","TESTE","TESTE","TESTE","TESTE"),
+            });
+        }
+        private async void abb_novoEndereco_Click(object sender, RoutedEventArgs e)
+        {
+            ContaEnderecoContentDialog ce = new ContaEnderecoContentDialog();
+            await ce.ShowAsync();
+        }
 
+        private async void abb_novoContato_Click(object sender, RoutedEventArgs e)
+        {
+            ContaContatoEditContentDialog cc = new ContaContatoEditContentDialog();
+            await cc.ShowAsync();
+        }
+
+        private async void lv_contatos_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var contaContato = e.ClickedItem as ContaContato;
+            ContaContatoEditContentDialog cd = new ContaContatoEditContentDialog(contaContato);
+            await cd.ShowAsync();
         }
     }
 }

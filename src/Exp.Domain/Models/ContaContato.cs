@@ -16,13 +16,13 @@ namespace Exp.Domain.Models
             Id_conta = id_conta;
         }
 
-        public string Nome { get; protected set; }
-        public string Telefone { get; protected set; }
-        public string TelefoneAdicional { get; protected set; }
-        public string Email { get; protected set; }
-        public string Funcao { get; protected set; }
-        public string Observacoes { get; protected set; }
-        public Guid Id_conta { get; protected set; }
+        public string Nome { get; set; }
+        public string Telefone { get; set; }
+        public string TelefoneAdicional { get; set; }
+        public string Email { get; set; }
+        public string Funcao { get; set; }
+        public string Observacoes { get; set; }
+        public Guid Id_conta { get; set; }
 
         public Conta Conta { get; set; }
     }

@@ -1,4 +1,5 @@
-﻿using Exp.Infra.Identity.Models;
+﻿using Exp.Domain.Core.Models;
+using Exp.Infra.Identity.Models;
 using Exp.Services.Api.Configurations;
 using Exp.Services.Api.Interfaces;
 using Microsoft.IdentityModel.Tokens;
@@ -52,15 +53,7 @@ namespace Exp.Services.Api.Services
 
             var token = handler.WriteToken(securityToken);
 
-            return new
-            {
-                authenticated = true,
-                created = dataCriacao.ToString("yyyy-MM-dd HH:mm:ss"),
-                expiration = dataExpiracao.ToString("yyyy-MM-dd HH:mm:ss"),
-                accessToken = token,
-                message = "OK",
-                userId = usuario.Id
-            };
+            return new TokenContainer(dataCriacao.ToString("yyyy-MM-dd HH:mm:ss"), dataExpiracao.ToString("yyyy-MM-dd HH:mm:ss"), token, usuario.Id);
         }
     }
 }

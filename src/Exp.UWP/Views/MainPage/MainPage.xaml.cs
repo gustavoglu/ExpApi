@@ -1,9 +1,12 @@
-﻿using Exp.UWP.Views.Login;
+﻿using Exp.UWP.ContentDialogs;
+using Exp.UWP.Views.Contato;
+using Exp.UWP.Views.Login;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -27,6 +30,7 @@ namespace Exp.UWP.Views.MainPage
         public MainPage()
         {
             this.InitializeComponent();
+
         }
         private void NavigateToDestinationPage()
         {
@@ -37,7 +41,24 @@ namespace Exp.UWP.Views.MainPage
             Frame.Navigate(typeof(LoginPage));
         }
 
-        private void b_login_Click(object sender, RoutedEventArgs e)
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            if(e.NavigationMode == NavigationMode.Back)
+            {
+                ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("buttonLogin", b_login);
+                ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("loginText", t_loginText);
+                ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("logo", image_logo);
+                ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("image", city);
+
+            }
+
+            base.OnNavigatedFrom(e);
+
+
+        }
+
+
+        private async void b_login_Click(object sender, RoutedEventArgs e)
         {
             NavigateToDestinationPage();
         }

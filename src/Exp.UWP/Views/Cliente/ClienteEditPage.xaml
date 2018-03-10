@@ -19,25 +19,39 @@
                             <TextBox x:Name="tb_telefone" Header="Telefone" HorizontalContentAlignment="Stretch" Margin="5"/>
                             <TextBox x:Name="tb_telefoneAd" Header="Telefone Adicional" HorizontalContentAlignment="Stretch" Margin="5"/>
                             <TextBox x:Name="tb_documento" Header="Documento" HorizontalContentAlignment="Stretch" Margin="5"/>
-                            <ComboBox x:Name="cb_tipoDocumento" Header="Tipo Documento" HorizontalAlignment="Stretch" />
+                            <ComboBox x:Name="cb_tipoDocumento" Header="Tipo Documento" Margin="5" HorizontalAlignment="Stretch" />
                         </StackPanel>
                     </PivotItem.Content>
                 </PivotItem>
                 <PivotItem Header="Endereços">
                     <PivotItem.Content>
                         <RelativePanel x:Name="rp_enderecos">
-                            <AppBar x:Name="cmdb_enderecos" IsOpen="True" Background="Transparent" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+                            <ListView x:Name="lv_enderecos"/>
+                            <CommandBar x:Name="cmdb_enderecos" Background="Transparent" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
                                 <AppBarButton x:Name="abb_novoEndereco" HorizontalAlignment="Right" Click="abb_novoEndereco_Click" Icon="Add"/>
-                            </AppBar>
+                            </CommandBar>
                         </RelativePanel>
                     </PivotItem.Content>
                 </PivotItem>
                 <PivotItem Header="Contatos">
                     <PivotItem.Content>
                         <RelativePanel x:Name="rp_contatos">
-                            <AppBar x:Name="cmdb_contatos" IsOpen="True" Background="Transparent" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
-                                <AppBarButton x:Name="abb_novoContato" HorizontalAlignment="Right" Click="abb_novoEndereco_Click" Icon="Add"/>
-                            </AppBar>
+                            <ListView x:Name="lv_contatos" HorizontalContentAlignment="Stretch" IsItemClickEnabled="True" ItemClick="lv_contatos_ItemClick">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Nome}" Margin="5" />
+                                            <TextBlock Text="{Binding Telefone}" Margin="5" />
+                                            <TextBlock Text="{Binding TelefoneAdicional}" Margin="5" />
+                                            <TextBlock Text="{Binding Funcao}" Margin="5" />
+                                            <TextBlock Text="{Binding Observacoes}" Margin="5" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            <CommandBar x:Name="cmdb_contatos"  IsOpen="True" Background="Transparent" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+                                <AppBarButton x:Name="abb_novoContato" HorizontalAlignment="Right" Click="abb_novoContato_Click" Icon="Add"/>
+                            </CommandBar>
                         </RelativePanel>
                     </PivotItem.Content>
                 </PivotItem>
@@ -45,14 +59,7 @@
         </Pivot>
         <FlyoutBase.AttachedFlyout>
             <Flyout>
-                <StackPanel>
-                    <TextBox x:Name="tb_contatoNome" Header="Nome"  HorizontalAlignment="Stretch" Margin="5"/>
-                    <TextBox x:Name="tb_contatoTelefone " Header="Telefone"  HorizontalAlignment="Stretch" Margin="5"/>
-                    <TextBox x:Name="tb_contatoTelefoneAdd " Header="Telefone Adicional"  HorizontalAlignment="Stretch" Margin="5"/>
-                    <TextBox x:Name="tb_contatoEmail " Header="E-mail"  HorizontalAlignment="Stretch" Margin="5"/>
-                    <TextBox x:Name="tb_contatoFuncao" Header="Função"  HorizontalAlignment="Stretch" Margin="5"/>
-                    <TextBox x:Name="tb_contatoObs" Header="Observações" HorizontalAlignment="Stretch" Margin="5"/>
-                </StackPanel>
+               
             </Flyout>
         </FlyoutBase.AttachedFlyout>
     </Grid>
