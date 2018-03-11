@@ -75,7 +75,8 @@
                     Content="Login" 
                     MinWidth="250"
                     RequestedTheme="Dark"
-                    Margin="5"/>
+                    Margin="5"
+                    Click="b_login_Click"/>
             </StackPanel>
 
         </RelativePanel>

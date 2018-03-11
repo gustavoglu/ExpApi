@@ -2,6 +2,7 @@
 using Exp.Infra.Identity.ViewModels;
 using Exp.UWP.Interfaces;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Net.Http;
 using System.Text;
@@ -66,13 +67,13 @@ namespace Exp.UWP.WS
 
         private async Task<object> GetResponse<T>(HttpResponseMessage result)
         {
-            dynamic content = await result.Content.ReadAsStringAsync();
+            string content = await result.Content.ReadAsStringAsync();
             try
             {
-                var obj = JsonConvert.DeserializeObject<T>(content.data);
-                return obj;
+                var response = JsonConvert.DeserializeObject<Response>(content);
+                return response.Data as TokenContainer;
             }
-            catch
+            catch(Exception e)
             {
                 try
                 {

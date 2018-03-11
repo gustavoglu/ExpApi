@@ -2,6 +2,10 @@
 {
     public class TokenContainer
     {
+        public TokenContainer()
+        {
+                
+        }
         public TokenContainer(string created, string expiration, string accessToken, string userId)
         {
             Created = created;

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Exp.Domain.Core.Models;
+using Exp.Infra.Identity.ViewModels;
+using Exp.UWP.WS;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -6,6 +9,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Core;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -46,6 +50,22 @@ namespace Exp.UWP.Views.Login
             logoAnimation?.TryStart(logoDest);
             loginTextAnimation?.TryStart(t_loginTextDest);
 
+        }
+
+        private async void b_login_Click(object sender, RoutedEventArgs e)
+        {
+            LoginViewModel login = new LoginViewModel { Login = "adm@adm.com", Senha = "adm123*" };
+            WSService ws = new WSService();
+            var result =  await ws.Login(login);
+            if(result.GetType() == typeof(Response))
+            {
+                var response = ((Response)result);
+                MessageDialog msg = new MessageDialog(response.Data.ToString());
+                await msg.ShowAsync();
+                return;
+            }
+            MessageDialog msgOk = new MessageDialog("Ok");
+            await msgOk.ShowAsync();
         }
     }
 }
