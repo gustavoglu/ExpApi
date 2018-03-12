@@ -1,4 +1,5 @@
 ﻿using Exp.Domain.Models;
+using Exp.UWP.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,19 +21,19 @@ namespace Exp.UWP.Views.Contato
 {
     public sealed partial class ContaContatoEditContentDialog : ContentDialog
     {
-        private ContaContato _contaContato;
+        private ContaContatoViewModel _contaContato;
         private string Titulo;
         private string TituloDialog;
-        public ContaContatoEditContentDialog(ContaContato contato = null)
+        public ContaContatoEditContentDialog(ContaContatoViewModel contato = null)
         {
             AtribuiTituloDialog(contato);
 
-            _contaContato = contato ?? new ContaContato(Guid.Empty);
+            _contaContato = contato ??new ContaContatoViewModel (new ContaContato(Guid.Empty));
 
             this.InitializeComponent();
         }
 
-        private void AtribuiTituloDialog(ContaContato contato = null)
+        private void AtribuiTituloDialog(ContaContatoViewModel contato = null)
         {
             if (contato != null)
             {

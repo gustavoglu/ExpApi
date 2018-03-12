@@ -1,4 +1,5 @@
 ﻿using Exp.Domain.Models;
+using Exp.UWP.ViewModels;
 using Exp.UWP.Views.Contato;
 using Exp.UWP.Views.Endereco;
 using System;
@@ -33,16 +34,16 @@ namespace Exp.UWP.Views.Cliente
 
         }
 
-        ObservableCollection<ContaContato> ContaCotatosMock()
+        ObservableCollection<ContaContatoViewModel> ContaCotatosMock()
         {
-            return new ObservableCollection<ContaContato>(
-                new List<ContaContato>()
+            return new ObservableCollection<ContaContatoViewModel>(
+                new List<ContaContatoViewModel>()
             {
-                new ContaContato(Guid.Empty,"TESTE","TESTE","TESTE","TESTE","TESTE","TESTE"),
-                new ContaContato(Guid.Empty,"TESTE","TESTE","TESTE","TESTE","TESTE","TESTE"),
-                new ContaContato(Guid.Empty,"TESTE","TESTE","TESTE","TESTE","TESTE","TESTE"),
-                new ContaContato(Guid.Empty,"TESTE","TESTE","TESTE","TESTE","TESTE","TESTE"),
-                new ContaContato(Guid.Empty,"TESTE","TESTE","TESTE","TESTE","TESTE","TESTE"),
+                new ContaContatoViewModel( new ContaContato(Guid.Empty,"TESTE","TESTE","TESTE","TESTE","TESTE","TESTE")),
+                new ContaContatoViewModel( new ContaContato(Guid.Empty,"TESTE","TESTE","TESTE","TESTE","TESTE","TESTE")),
+                new ContaContatoViewModel( new ContaContato(Guid.Empty,"TESTE","TESTE","TESTE","TESTE","TESTE","TESTE")),
+                new ContaContatoViewModel( new ContaContato(Guid.Empty,"TESTE","TESTE","TESTE","TESTE","TESTE","TESTE")),
+                new ContaContatoViewModel( new ContaContato(Guid.Empty,"TESTE","TESTE","TESTE","TESTE","TESTE","TESTE")),
             });
         }
         private async void abb_novoEndereco_Click(object sender, RoutedEventArgs e)
@@ -59,7 +60,7 @@ namespace Exp.UWP.Views.Cliente
 
         private async void lv_contatos_ItemClick(object sender, ItemClickEventArgs e)
         {
-            var contaContato = e.ClickedItem as ContaContato;
+            var contaContato = e.ClickedItem as ContaContatoViewModel;
             ContaContatoEditContentDialog cd = new ContaContatoEditContentDialog(contaContato);
             await cd.ShowAsync();
         }

@@ -38,6 +38,7 @@ namespace Exp.UWP.WS
             string objSerialize = JsonConvert.SerializeObject(loginViewModel);
             StringContent stringContent = new StringContent(objSerialize, Encoding.UTF8, "application/json");
             var result = await client.PostAsync(uri, stringContent);
+
             var response = await GetResponse<TokenContainer>(result);
             return response;
         }
@@ -70,8 +71,10 @@ namespace Exp.UWP.WS
             string content = await result.Content.ReadAsStringAsync();
             try
             {
-                var response = JsonConvert.DeserializeObject<Response>(content);
-                return response.Data as TokenContainer;
+                dynamic obj = JObject.Parse(content);
+                var dataJson = JsonConvert.SerializeObject(obj.data);
+                var typeObj = JsonConvert.DeserializeObject<T>(dataJson);
+                return typeObj;
             }
             catch(Exception e)
             {

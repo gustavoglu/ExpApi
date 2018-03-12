@@ -1,4 +1,5 @@
 ﻿using Exp.Domain.Models;
+using Exp.UWP.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,13 +21,13 @@ namespace Exp.UWP.Views.Endereco
 {
     public sealed partial class ContaEnderecoContentDialog : ContentDialog
     {
-        private ContaEndereco _contaEndereco;
+        private ContaEnderecoViewModel _contaEndereco;
         private string Titulo;
         private string TituloDialog;
-        public ContaEnderecoContentDialog(ContaEndereco contaEndereco = null)
+        public ContaEnderecoContentDialog(ContaEnderecoViewModel contaEndereco = null)
         {
             AtribuiTituloDialog();
-            _contaEndereco = contaEndereco ?? new ContaEndereco("","","","","");
+            _contaEndereco = contaEndereco ?? new ContaEnderecoViewModel( new ContaEndereco("","","","",""));
             this.InitializeComponent();
         }
 
