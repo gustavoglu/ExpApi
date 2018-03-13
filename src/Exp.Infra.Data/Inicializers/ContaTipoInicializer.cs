@@ -20,14 +20,23 @@ namespace Exp.Infra.Data.Inicializers
         public void Seed()
         {
             var contaUsuarioExist = _contaTipoRepository.Pesquisar(ct => ct.Descricao == "Usuario").Count() > 0;
-            if (contaUsuarioExist) return ;
+            var contaClienteExist = _contaTipoRepository.Pesquisar(ct => ct.Descricao == "Cliente").Count() > 0;
 
-            // Usuario
-            ContaTipo contaTipo = new ContaTipo("Usuario");
-            contaTipo.SetId(Guid.Parse("42c251fc-5e4b-4aee-9e92-f0159a2a6e65"));
-            _contaTipoRepository.Criar(contaTipo);
+            if (!contaUsuarioExist)
+            {
+                // Usuario
+                ContaTipo contaTipo = new ContaTipo("Usuario");
+                contaTipo.SetId(Guid.Parse("42c251fc-5e4b-4aee-9e92-f0159a2a6e65"));
+                _contaTipoRepository.Criar(contaTipo);
+            }
 
-
+            if (!contaClienteExist)
+            {
+                //Cliente
+                ContaTipo cliente = new ContaTipo("Cliente");
+                cliente.SetId(Guid.Parse("e8d735c4-a499-4ff3-9fdd-421c492dd543"));
+                _contaTipoRepository.Criar(cliente);
+            }
             _uow.Commit();
         }
     }

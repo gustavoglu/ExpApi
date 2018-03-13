@@ -1,4 +1,6 @@
-﻿using Exp.Domain.Interfaces.Repository;
+﻿using Exp.Application.Interfaces;
+using Exp.Application.Services;
+using Exp.Domain.Interfaces.Repository;
 using Exp.Domain.Interfaces.UoW;
 using Exp.Domain.Interfaces.UserIdentity;
 using Exp.Infra.Data.Context;
@@ -8,7 +10,6 @@ using Exp.Infra.Data.UoW;
 using Exp.Infra.Identity.Context;
 using Exp.Infra.Identity.Services;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 
 namespace Exp.Infra.IoC
 {
@@ -35,7 +36,8 @@ namespace Exp.Infra.IoC
             services.AddScoped<IContaTipoRepository, ContaTipoRepository>();
 
             //Services
-
+            services.AddScoped<IContaTipoService, ContaTipoService>();
+            services.AddScoped<IClienteService, ClienteService>();
 
         }
     }

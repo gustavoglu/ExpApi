@@ -8,6 +8,7 @@
     <OldToolsVersion>2.0</OldToolsVersion>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Exp.Application\Exp.Application.csproj" />
     <ProjectReference Include="..\Exp.Infra.Data\Exp.Infra.Data.csproj" />
     <ProjectReference Include="..\Exp.Infra.Identity\Exp.Infra.Identity.csproj" />
   </ItemGroup>

@@ -98,19 +98,21 @@
     <Compile Include="ContentDialogs\ContentDialogGrid.xaml.cs">
       <DependentUpon>ContentDialogGrid.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\StringToTipoDocumento.cs" />
     <Compile Include="Interfaces\IWSService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\Constantes.cs" />
+    <Compile Include="Util\Message.cs" />
     <Compile Include="Util\Util.cs" />
     <Compile Include="ViewModels\ContaContatoViewModel.cs" />
     <Compile Include="ViewModels\ContaEnderecoViewModel.cs" />
-    <Compile Include="Views\Cliente\ClienteEditPage.xaml.cs">
+    <Compile Include="Views\Clientes\ClienteEditPage.xaml.cs">
       <DependentUpon>ClienteEditPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Contato\ContaContatoEditContentDialog.xaml.cs">
+    <Compile Include="Views\Contatos\ContaContatoEditContentDialog.xaml.cs">
       <DependentUpon>ContaContatoEditContentDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Endereco\ContaEnderecoEditContentDialog.xaml.cs">
+    <Compile Include="Views\Enderecos\ContaEnderecoEditContentDialog.xaml.cs">
       <DependentUpon>ContaEnderecoEditContentDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Login\LoginPage.xaml.cs">
@@ -152,15 +154,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Cliente\ClienteEditPage.xaml">
+    <Page Include="Views\Clientes\ClienteEditPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Contato\ContaContatoEditContentDialog.xaml">
+    <Page Include="Views\Contatos\ContaContatoEditContentDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Endereco\ContaEnderecoEditContentDialog.xaml">
+    <Page Include="Views\Enderecos\ContaEnderecoEditContentDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

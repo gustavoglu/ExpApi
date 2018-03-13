@@ -45,6 +45,7 @@ namespace Exp.UWP.WS
 
         public async Task<object> Post<T>(string uri, T obj)
         {
+            if (obj == null) return new Response("Objeto Nulo", false);
             HttpClient client = new HttpClient();
             string objSerialize = JsonConvert.SerializeObject(obj);
             StringContent stringContent = new StringContent(objSerialize, Encoding.UTF8, "application/json");
@@ -55,6 +56,7 @@ namespace Exp.UWP.WS
 
         public async Task<object> Put<T>(string uri, T obj)
         {
+            if (obj == null) return new Response("Objeto Nulo", false);
             HttpClient client = new HttpClient();
             string objSerialize = JsonConvert.SerializeObject(obj);
             StringContent stringContent = new StringContent(objSerialize, Encoding.UTF8, "application/json");

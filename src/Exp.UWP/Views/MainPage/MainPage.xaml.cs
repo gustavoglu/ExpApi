@@ -1,5 +1,5 @@
 ﻿using Exp.UWP.ContentDialogs;
-using Exp.UWP.Views.Contato;
+using Exp.UWP.Views.Contatos;
 using Exp.UWP.Views.Login;
 using System;
 using System.Collections.Generic;

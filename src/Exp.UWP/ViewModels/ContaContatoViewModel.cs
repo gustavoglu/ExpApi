@@ -1,4 +1,5 @@
 ﻿using Exp.Domain.Models;
+using System;
 using System.ComponentModel;
 
 namespace Exp.UWP.ViewModels
@@ -13,6 +14,7 @@ namespace Exp.UWP.ViewModels
             _contaContato = contaContato;
         }
 
+        public Guid? Id { get { return _contaContato.Id; } }
         public string Nome { get { return _contaContato.Nome; } set { _contaContato.Nome = value; Notify(nameof(Nome)); } }
         public string Email { get { return _contaContato.Email; } set { _contaContato.Email = value; Notify(nameof(Email)); } }
         public string Funcao { get { return _contaContato.Funcao; } set { _contaContato.Funcao = value; Notify(nameof(Funcao)); } }

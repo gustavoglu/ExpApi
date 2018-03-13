@@ -1,4 +1,4 @@
-﻿using Exp.UWP.Views.Cliente;
+﻿using Exp.UWP.Views.Clientes;
 using Exp.UWP.Views.MainPage;
 using System;
 using System.Collections.Generic;

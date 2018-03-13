@@ -17,37 +17,34 @@ using Windows.UI.Xaml.Navigation;
 
 // The Content Dialog item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace Exp.UWP.Views.Contato
+namespace Exp.UWP.Views.Endereco
 {
-    public sealed partial class ContaContatoEditContentDialog : ContentDialog
+    public sealed partial class ContaEnderecoContentDialog : ContentDialog
     {
-        private ContaContatoViewModel _contaContato;
+        private ContaEnderecoViewModel _contaEndereco;
         private string Titulo;
         private string TituloDialog;
-        public ContaContatoEditContentDialog(ContaContatoViewModel contato = null)
+        private bool _edit;
+        public ContaEnderecoContentDialog(ContaEnderecoViewModel contaEndereco = null, bool edit = false)
         {
-            AtribuiTituloDialog(contato);
-
-            _contaContato = contato ??new ContaContatoViewModel (new ContaContato(Guid.Empty));
-
+            AtribuiTituloDialog();
+            _contaEndereco = contaEndereco ?? new ContaEnderecoViewModel( new ContaEndereco("","","","",""));
+            _edit = edit;
             this.InitializeComponent();
         }
 
-        private void AtribuiTituloDialog(ContaContatoViewModel contato = null)
+        private void AtribuiTituloDialog(ContaEndereco contaEndereco = null)
         {
-            if (contato != null)
+            if (contaEndereco != null)
             {
-                Titulo = $"Editar Contato {contato.Nome}";
-                TituloDialog = "Editar Contato";
+                Titulo = $"Editar Endereço";
+                TituloDialog = "Editar Endereço";
                 return;
             }
 
-            Titulo = "Novo Contato";
-            TituloDialog = "Novo Contato";
+            Titulo = "Novo Endereço";
+            TituloDialog = "Novo Endereço";
         }
-
-
-
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
         }

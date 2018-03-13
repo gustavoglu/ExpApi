@@ -18,19 +18,19 @@ namespace Exp.Domain.Models
             Id_contaTipo = id_contaTipo;
         }
 
-        public string Nome { get; protected set; }
+        public string Nome { get; set; }
 
-        public string Email { get; protected set; }
+        public string Email { get; set; }
 
-        public string Telefone { get; protected set; }
+        public string Telefone { get; set; }
 
-        public string TelefoneAdicional { get; protected set; } 
+        public string TelefoneAdicional { get; set; } 
 
-        public string Documento { get; protected set; }
+        public string Documento { get; set; }
 
-        public ETipoDocumento? TipoDocumento { get; protected set; }
+        public ETipoDocumento? TipoDocumento { get; set; }
 
-        public Guid Id_contaTipo { get; protected set; }
+        public Guid Id_contaTipo { get; set; }
 
         public ContaTipo ContaTipo { get; set; }
 

@@ -8,10 +8,6 @@
     <OldToolsVersion>2.0</OldToolsVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="Interfaces\" />
-    <Folder Include="Services\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Exp.Domain\Exp.Domain.csproj" />
     <ProjectReference Include="..\Exp.Infra.Identity\Exp.Infra.Identity.csproj" />
   </ItemGroup>
