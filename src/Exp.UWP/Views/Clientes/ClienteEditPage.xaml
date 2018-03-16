@@ -8,6 +8,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
+    <Page.Resources>
+        <ResourceDictionary>
+            <conv:StringToTipoDocumento x:Key="tipoDocumento"/>
+        </ResourceDictionary>
+    </Page.Resources>
+    
     <Grid x:Name="grid_principal" Padding="30" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Pivot>
             <Pivot.Items>
@@ -21,7 +27,7 @@
                                 <TextBox x:Name="tb_telefone" Header="Telefone" Text="{x:Bind _cliente.Telefone, Mode=TwoWay}" HorizontalContentAlignment="Stretch" Margin="5"/>
                                 <TextBox x:Name="tb_telefoneAd" Header="Telefone Adicional" Text="{x:Bind _cliente.TelefoneAdicional, Mode=TwoWay}"  HorizontalContentAlignment="Stretch" Margin="5"/>
                                 <TextBox x:Name="tb_documento" Header="Documento" Text="{x:Bind _cliente.Documento, Mode=TwoWay}" HorizontalContentAlignment="Stretch" Margin="5"/>
-                                <ComboBox x:Name="cb_tipoDocumento" SelectedItem="{x:Bind _cliente.TipoDocumento, Mode=TwoWay}" ItemsSource="{x:Bind TiposDocumento}"  PlaceholderText="Tipo do Documento" Header="Tipo Documento" Margin="5" HorizontalAlignment="Stretch" />
+                                <ComboBox x:Name="cb_tipoDocumento" SelectedItem="{x:Bind _cliente.TipoDocumento, Mode=TwoWay,Converter={StaticResource tipoDocumento} }" ItemsSource="{x:Bind TiposDocumento}"  PlaceholderText="Tipo do Documento" Header="Tipo Documento" Margin="5" HorizontalAlignment="Stretch" />
                             </StackPanel>
                             <CommandBar x:Name="cmb_dados" Background="Transparent" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
                                 <AppBarButton x:Name="abb_salvar" Icon="Accept" Label="Salvar" Click="abb_salvar_Click"/>
@@ -33,7 +39,30 @@
                 <PivotItem Header="Endereços">
                     <PivotItem.Content>
                         <RelativePanel x:Name="rp_enderecos">
-                            <ListView x:Name="lv_enderecos"/>
+                            <ListView x:Name="lv_enderecos" ItemsSource="{x:Bind enderecos}" ItemClick="lv_enderecos_ItemClick" IsItemClickEnabled="True">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border>
+                                            <Border.ContextFlyout>
+                                                <MenuFlyout>
+                                                    <MenuFlyoutItem Text="Excluir" Holding="MenuFlyoutItem_Click"/>
+                                                </MenuFlyout>
+                                            </Border.ContextFlyout>
+                                            <StackPanel Orientation="Horizontal" >
+                                            <TextBlock Text="{Binding Rua}" Margin="5" />
+                                            <TextBlock Text="{Binding Numero}" Margin="5" />
+                                            <TextBlock Text="{Binding Complemento}" Margin="5" />
+                                            <TextBlock Text="{Binding Bairro}" Margin="5" />
+                                            <TextBlock Text="{Binding Cidade}" Margin="5" />
+                                            <TextBlock Text="{Binding Estado}" Margin="5" />
+                                            <TextBlock Text="{Binding Pais}" Margin="5" />
+                                        </StackPanel>
+                                        </Border>
+
+                                    </DataTemplate>
+                                        
+                                </ListView.ItemTemplate>
+                            </ListView>
                             <CommandBar x:Name="cmdb_enderecos" Background="Transparent" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
                                 <AppBarButton x:Name="abb_novoEndereco" HorizontalAlignment="Right" Click="abb_novoEndereco_Click" Icon="Add"/>
                             </CommandBar>

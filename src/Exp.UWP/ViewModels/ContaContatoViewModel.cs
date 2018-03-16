@@ -8,19 +8,20 @@ namespace Exp.UWP.ViewModels
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private readonly ContaContato _contaContato;
+        public ContaContato ContaContato { get; private set; }
+
         public ContaContatoViewModel(ContaContato contaContato)
         {
-            _contaContato = contaContato;
+            ContaContato = contaContato;
         }
 
-        public Guid? Id { get { return _contaContato.Id; } }
-        public string Nome { get { return _contaContato.Nome; } set { _contaContato.Nome = value; Notify(nameof(Nome)); } }
-        public string Email { get { return _contaContato.Email; } set { _contaContato.Email = value; Notify(nameof(Email)); } }
-        public string Funcao { get { return _contaContato.Funcao; } set { _contaContato.Funcao = value; Notify(nameof(Funcao)); } }
-        public string Telefone { get { return _contaContato.Telefone; } set { _contaContato.Telefone = value; Notify(nameof(Telefone)); } }
-        public string TelefoneAdicional { get { return _contaContato.TelefoneAdicional; } set { _contaContato.TelefoneAdicional = value; Notify(nameof(TelefoneAdicional)); } }
-        public string Observacoes { get { return _contaContato.Observacoes; } set { _contaContato.Observacoes = value; Notify(nameof(Observacoes)); } }
+        public Guid? Id { get { return ContaContato.Id; } }
+        public string Nome { get { return ContaContato.Nome; } set { ContaContato.Nome = value; Notify(nameof(Nome)); } }
+        public string Email { get { return ContaContato.Email; } set { ContaContato.Email = value; Notify(nameof(Email)); } }
+        public string Funcao { get { return ContaContato.Funcao; } set { ContaContato.Funcao = value; Notify(nameof(Funcao)); } }
+        public string Telefone { get { return ContaContato.Telefone; } set { ContaContato.Telefone = value; Notify(nameof(Telefone)); } }
+        public string TelefoneAdicional { get { return ContaContato.TelefoneAdicional; } set { ContaContato.TelefoneAdicional = value; Notify(nameof(TelefoneAdicional)); } }
+        public string Observacoes { get { return ContaContato.Observacoes; } set { ContaContato.Observacoes = value; Notify(nameof(Observacoes)); } }
 
         private void Notify(string propertyname)
         {

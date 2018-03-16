@@ -1,19 +1,7 @@
 ﻿using Exp.Domain.Models;
+using Exp.UWP.Handlers.Enderecos;
 using Exp.UWP.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 // The Content Dialog item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -25,6 +13,9 @@ namespace Exp.UWP.Views.Endereco
         private string Titulo;
         private string TituloDialog;
         private bool _edit;
+        public delegate void SalvaEndereco(object sender, ContaEnderecoHandler args);
+        public event SalvaEndereco SalvaEnderecoHandler;
+
         public ContaEnderecoContentDialog(ContaEnderecoViewModel contaEndereco = null, bool edit = false)
         {
             AtribuiTituloDialog();
@@ -47,6 +38,7 @@ namespace Exp.UWP.Views.Endereco
         }
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
+            SalvaEnderecoHandler(this, new ContaEnderecoHandler(_contaEndereco.ContaEndereco, _edit));
         }
 
         private void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)

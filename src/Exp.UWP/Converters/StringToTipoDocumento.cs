@@ -8,15 +8,17 @@ namespace Exp.UWP.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var valor = (string)value;
-            var tipoDocumento = Enum.Parse<ETipoDocumento>(valor);
-            return tipoDocumento;
+            if (value == null) return null;
+            var tipoDocumento = (ETipoDocumento)value;
+            return tipoDocumento.ToString();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
-            var tipoDocumento = (ETipoDocumento)value;
-            return tipoDocumento.ToString();
+            if (value == null) return null;
+            var valor = (string)value;
+            var tipoDocumento = Enum.Parse<ETipoDocumento>(valor);
+            return tipoDocumento;
         }
     }
 }

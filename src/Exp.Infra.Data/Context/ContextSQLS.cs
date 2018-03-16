@@ -80,6 +80,8 @@ namespace Exp.Infra.Data.Context
         {
             foreach (var atualizado in atualizados)
             {
+                atualizado.Property("CriadoEm").IsModified = false;
+                atualizado.Property("CriadoPor").IsModified = false;
                 var entity = (Entity)atualizado.Entity;
                 entity.AtribuirAtualizacao(_user.UserNameLogado());
             }
@@ -89,6 +91,10 @@ namespace Exp.Infra.Data.Context
             foreach (var deletado in deletados)
             {
                 deletado.State = EntityState.Modified;
+                deletado.Property("CriadoEm").IsModified = false;
+                deletado.Property("CriadoPor").IsModified = false;
+                deletado.Property("AtualizadoEm").IsModified = false;
+                deletado.Property("AtualizadoPor").IsModified = false;
                 var entity = (Entity)deletado.Entity;
                 entity.AtribuirDelecao(_user.UserNameLogado());
             }
