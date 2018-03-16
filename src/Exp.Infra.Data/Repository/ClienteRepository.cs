@@ -14,19 +14,15 @@ namespace Exp.Infra.Data.Repository
         {
         }
 
-        //public override IEnumerable<Cliente> TrazerTodosAtivos()
-        //{
-        //    return dbSet.Where(c => c.Deletado == false)
-        //        .Include(c => c.Enderecos)
-        //        .Include(c => c.Contatos);
-        //}
+        public override IEnumerable<Cliente> TrazerTodosAtivos()
+        {
+            return dbSet.Where(c => c.Deletado == false)
+                .Include(c => c.Enderecos)
+                .Include(c => c.Contatos);
+        }
 
         public override Cliente TrazerPorId(Guid id)
         {
-            var teste = dbSet.Include(c => c.Enderecos)
-                        .Include(c => c.Contatos)
-                        .FirstOrDefault(c => c.Id == id);
-
             return dbSet.Include(c => c.Enderecos)
                         .Include(c => c.Contatos)
                         .FirstOrDefault(c => c.Id == id);

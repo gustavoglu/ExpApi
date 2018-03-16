@@ -83,6 +83,7 @@ namespace Exp.UWP.Views.Clientes
                                          select new ContaEnderecoViewModel(endereco);
 
                 enderecos = new ObservableCollection<ContaEnderecoViewModel>(enderecosViewModel);
+                lv_enderecos.ItemsSource = enderecos;
             }
 
             if (_cliente.Contatos != null && _cliente.Contatos.Any())
@@ -91,9 +92,10 @@ namespace Exp.UWP.Views.Clientes
                                         select new ContaContatoViewModel(contato);
 
                 contatos = new ObservableCollection<ContaContatoViewModel>(contatosViewModel);
+                lv_contatos.ItemsSource = contatos;
             }
 
-
+            this.InitializeComponent();
             base.OnNavigatedTo(e);
         }
 
