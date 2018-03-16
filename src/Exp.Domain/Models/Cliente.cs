@@ -6,7 +6,10 @@ namespace Exp.Domain.Models
 {
     public class Cliente : Conta
     {
+        public Cliente()
+        {
 
+        }
         public Cliente(string nome, Guid id_contaTipo, string razaoSocial = null, string email = null, string telefone = null, string telefoneAdicional = null, 
             string documento = null, ETipoDocumento? tipoDocumento = null) : 
             base(nome, id_contaTipo, email, telefone, telefoneAdicional, documento, tipoDocumento)

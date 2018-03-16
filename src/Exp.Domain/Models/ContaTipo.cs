@@ -12,7 +12,7 @@ namespace Exp.Domain.Models
             Descricao = descricao;
         }
 
-        public string Descricao { get; protected set; }
+        public string Descricao { get; set; }
 
         public IEnumerable<Conta> Contas { get; set; }
     }

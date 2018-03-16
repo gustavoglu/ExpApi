@@ -11,8 +11,8 @@ namespace Exp.Infra.Data.Repository
 {
     public class Repository<T> : IRepository<T> where T : Entity
     {
-        ContextSQLS _context;
-        DbSet<T> dbSet;
+        protected ContextSQLS _context;
+        protected DbSet<T> dbSet;
 
         public Repository(ContextSQLS context)
         {
@@ -20,19 +20,19 @@ namespace Exp.Infra.Data.Repository
             dbSet = _context.Set<T>();
         }
 
-        public T Atualizar(T entity)
+        public virtual T Atualizar(T entity)
         {
             dbSet.Update(entity);
             return entity;
         }
 
-        public T Criar(T entity)
+        public virtual T Criar(T entity)
         {
             dbSet.Add(entity);
             return entity;
         }
 
-        public T Deletar(Guid id)
+        public virtual T Deletar(Guid id)
         {
             var entity = this.TrazerPorId(id);
             dbSet.Remove(entity);
@@ -44,22 +44,22 @@ namespace Exp.Infra.Data.Repository
             return dbSet.Where(predicate);
         }
 
-        public T TrazerPorId(Guid id)
+        public virtual T TrazerPorId(Guid id)
         {
             return dbSet.Find(id);
         }
 
-        public IEnumerable<T> TrazerTodos()
+        public virtual IEnumerable<T> TrazerTodos()
         {
             return dbSet;
         }
 
-        public IEnumerable<T> TrazerTodosAtivos()
+        public virtual IEnumerable<T> TrazerTodosAtivos()
         {
             return dbSet.Where(e => e.Deletado == false);
         }
 
-        public IEnumerable<T> TrazerTodosDeletados()
+        public virtual IEnumerable<T> TrazerTodosDeletados()
         {
             return dbSet.Where(e => e.Deletado == true);
         }

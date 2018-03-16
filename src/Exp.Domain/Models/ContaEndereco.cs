@@ -29,7 +29,7 @@ namespace Exp.Domain.Models
         public string Estado { get; set; }
         public string Pais { get; set; }
 
-        public Guid Id_conta { get; protected set; }
+        public Guid Id_conta { get; set; }
 
         public Conta Conta { get; set; }
     }

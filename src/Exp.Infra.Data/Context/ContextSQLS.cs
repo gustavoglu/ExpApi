@@ -47,7 +47,9 @@ namespace Exp.Infra.Data.Context
                 .AddJsonFile("appsettings.json")
                 .Build();
 
+
             optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=exp_db;Trusted_Connection=True;MultipleActiveResultSets=true");
+            
         }
 
         public override int SaveChanges()

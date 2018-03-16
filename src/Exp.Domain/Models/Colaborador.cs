@@ -5,6 +5,10 @@ namespace Exp.Domain.Models
 {
     public class Colaborador : Conta
     {
+        public Colaborador()
+        {
+
+        }
         public Colaborador(string nome, Guid id_contaTipo, string sobrenome = null, string departamento = null, string funcao = null,string email = null, 
             string telefone = null, string telefoneAdicional = null, string documento = null, ETipoDocumento? tipoDocumento = null) : 
             base(nome, id_contaTipo, email, telefone, telefoneAdicional, documento, tipoDocumento)
@@ -14,13 +18,13 @@ namespace Exp.Domain.Models
             Funcao = funcao;
         }
 
-        public string Sobrenome { get; protected set; }
+        public string Sobrenome { get; set; }
 
-        public string Departamento { get; protected set; }
+        public string Departamento { get; set; }
 
-        public string Funcao { get; protected set; }
+        public string Funcao { get; set; }
 
-        public Guid? Id_cliente{ get; protected set; }
+        public Guid? Id_cliente{ get; set; }
 
         public Cliente Cliente { get; set; }
     }

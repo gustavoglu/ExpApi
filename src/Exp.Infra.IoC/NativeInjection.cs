@@ -38,6 +38,7 @@ namespace Exp.Infra.IoC
             //Services
             services.AddScoped<IContaTipoService, ContaTipoService>();
             services.AddScoped<IClienteService, ClienteService>();
+            services.AddScoped<IContaService, ContaService>();
 
         }
     }

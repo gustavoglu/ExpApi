@@ -23,20 +23,27 @@ namespace Exp.Services.Api.Controllers
             return Response(_clienteService.TrazerTodosAtivos());
         }
 
+        [HttpGet("/api/[controller]/{id_cliente:Guid}")]
+        public IActionResult GetById(Guid id_cliente)
+        {
+            return Response(_clienteService.TrazerPorId(id_cliente));
+        }
+
+
         [HttpPost]
         public IActionResult Post([FromBody]Cliente cliente)
         {
             var cl = _clienteService.Criar(cliente);
             Commit();
-            return Response(_clienteService.Criar(cl));
+            return Response(cl);
         }
 
         [HttpPut]
         public IActionResult Put([FromBody]Cliente cliente)
         {
-            var cl = _clienteService.Atualizar(cliente);
+            var at = _clienteService.Atualizar(cliente);
             Commit();
-            return Response(_clienteService.Criar(cl));
+            return Response(at);
         }
 
         [HttpDelete("/api/[controller]/{id:Guid}")]

@@ -7,6 +7,10 @@ namespace Exp.Domain.Models
 {
     public abstract class Conta : Entity
     {
+        public Conta()
+        {
+
+        }
         protected Conta(string nome ,Guid id_contaTipo,string email = null, string telefone = null, string telefoneAdicional = null, string documento = null, ETipoDocumento? tipoDocumento = null)
         {
             Nome = nome;

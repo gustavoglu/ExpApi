@@ -5,6 +5,10 @@ namespace Exp.Domain.Models
 {
     public class ContaContato : Entity
     {
+        public ContaContato()
+        {
+
+        }
         public ContaContato(Guid id_conta, string nome = null, string telefone = null, string telefoneAdicional = null, string email = null, string funcao = null, string observacoes = null)
         {
             Nome = nome;

@@ -1,6 +1,7 @@
 ﻿using Exp.Domain.Core.Models;
 using Exp.Domain.Enums;
 using Exp.Domain.Models;
+using Exp.UWP.EntityServices;
 using Exp.UWP.ViewModels;
 using Exp.UWP.Views.Contatos;
 using Exp.UWP.Views.Endereco;
@@ -37,6 +38,7 @@ namespace Exp.UWP.Views.Clientes
         private ObservableCollection<ContaEnderecoViewModel> enderecos;
         private string[] TiposDocumento { get { return Enum.GetNames(typeof(ETipoDocumento)); } }
         ContaEnderecoContentDialog ce;
+
         public ClienteEditPage()
         {
             contatos = new ObservableCollection<ContaContatoViewModel>();
@@ -46,10 +48,26 @@ namespace Exp.UWP.Views.Clientes
 
             lv_contatos.ItemsSource = contatos;
         }
+        private async Task<Cliente> GetCliente(Guid id_cliente)
+        {
+            WSService s = new WSService();
+            var result = await s.Get<Cliente>(Constantes.SERVER_CLIENTES + id_cliente.ToString());
+            if(result.GetType() == typeof(Response))
+            {
+                var response = (Response)result;
+                Message.Erro((string)response.Data);
+                return null;
+            }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+            return result as Cliente;
+        }
+
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             var cliente = e.Parameter as Cliente;
+
+            cliente = await GetCliente(Guid.Parse("A8FF89BC-560A-427C-BE9F-0105DC10F0EA"));
+
             _cliente = cliente;
 
             Edit = _cliente != null;
@@ -75,10 +93,9 @@ namespace Exp.UWP.Views.Clientes
                 contatos = new ObservableCollection<ContaContatoViewModel>(contatosViewModel);
             }
 
-        
+
             base.OnNavigatedTo(e);
         }
-
 
         private async Task<List<ContaTipo>> TrazerContaTipos()
         {
@@ -93,18 +110,6 @@ namespace Exp.UWP.Views.Clientes
             return (contaTipos as List<ContaTipo>);
         }
 
-        ObservableCollection<ContaContatoViewModel> ContaCotatosMock()
-        {
-            return new ObservableCollection<ContaContatoViewModel>(
-                new List<ContaContatoViewModel>()
-            {
-                new ContaContatoViewModel( new ContaContato(Guid.Empty,"TESTE","TESTE","TESTE","TESTE","TESTE","TESTE")),
-                new ContaContatoViewModel( new ContaContato(Guid.Empty,"TESTE","TESTE","TESTE","TESTE","TESTE","TESTE")),
-                new ContaContatoViewModel( new ContaContato(Guid.Empty,"TESTE","TESTE","TESTE","TESTE","TESTE","TESTE")),
-                new ContaContatoViewModel( new ContaContato(Guid.Empty,"TESTE","TESTE","TESTE","TESTE","TESTE","TESTE")),
-                new ContaContatoViewModel( new ContaContato(Guid.Empty,"TESTE","TESTE","TESTE","TESTE","TESTE","TESTE")),
-            });
-        }
         private async void abb_novoEndereco_Click(object sender, RoutedEventArgs e)
         {
             ContaEnderecoContentDialog ce = new ContaEnderecoContentDialog();
@@ -112,17 +117,56 @@ namespace Exp.UWP.Views.Clientes
             await ce.ShowAsync();
         }
 
-        private void Ce_SalvaEnderecoHandler(object sender, Handlers.Enderecos.ContaEnderecoHandler args)
+        private async void Ce_SalvaEnderecoHandler(object sender, Handlers.Enderecos.ContaEnderecoHandler args)
         {
-            if (!args.Edit)
+            var wsEntityService = new WSEntityService<ContaEndereco>(Constantes.SERVER_CONTAS_ENDERECO);
+
+            if (!args.Edit && !Edit)
+            {
                 enderecos.Add(new ContaEnderecoViewModel(args.ContaEndereco));
-            
+                return;
+            }
+
+            if (args.Edit && !Edit) return;
+
+            if (Edit && args.Edit)
+            {
+                await wsEntityService.Atualiza(args.ContaEndereco);
+                return;
+            }
+
+            if (Edit && !args.Edit)
+            {
+                args.ContaEndereco.Id_conta = _cliente.Id.Value;
+                await wsEntityService.Cria(args.ContaEndereco);
+                return;
+            }
         }
 
-        private void Cc_SalvaContatoHandler(object sender, Handlers.Contatos.ContaContatoHandler args)
+        private async void Cc_SalvaContatoHandler(object sender, Handlers.Contatos.ContaContatoHandler args)
         {
-            if (!args.Edit)
+            var wsEntityService = new WSEntityService<ContaContato>(Constantes.SERVER_CONTAS_CONTATO);
+
+            if (!args.Edit && !Edit)
+            {
                 contatos.Add(new ContaContatoViewModel(args.ContaContato));
+                return;
+            }
+
+            if (args.Edit && !Edit) return;
+
+            if (Edit && args.Edit)
+            {
+                await wsEntityService.Atualiza(args.ContaContato);
+                return;
+            }
+
+            if(Edit && !args.Edit)
+            {
+                args.ContaContato.Id_conta = _cliente.Id.Value;
+                await wsEntityService.Cria(args.ContaContato);
+                return;
+            }
         }
 
         private async void abb_novoContato_Click(object sender, RoutedEventArgs e)
@@ -131,19 +175,22 @@ namespace Exp.UWP.Views.Clientes
             cc.SalvaContatoHandler += Cc_SalvaContatoHandler;
             await cc.ShowAsync();
         }
-     
+
         private async void lv_contatos_ItemClick(object sender, ItemClickEventArgs e)
         {
             var contaContato = e.ClickedItem as ContaContatoViewModel;
-            ContaContatoEditContentDialog cc = new ContaContatoEditContentDialog(contaContato);
+            ContaContatoEditContentDialog cc = new ContaContatoEditContentDialog(contaContato, true);
             cc.SalvaContatoHandler += Cc_SalvaContatoHandler;
             await cc.ShowAsync();
         }
 
         private async void abb_salvar_Click(object sender, RoutedEventArgs e)
         {
-            if (contatos.Any()) _cliente.Contatos = contatos.ToList().Select(c => c.ContaContato);
-            if (enderecos.Any()) _cliente.Enderecos = from endereco in enderecos.ToList() select endereco.ContaEndereco;
+            if (!Edit)
+            {
+                if (contatos.Any()) _cliente.Contatos = (from contato in contatos.ToList() select contato.ContaContato).ToList();
+                if (enderecos.Any()) _cliente.Enderecos = (from endereco in enderecos.ToList() select endereco.ContaEndereco).ToList();
+            }
 
             WSService ws = new WSService();
             var result = await ws.Post(Constantes.SERVER_CLIENTES, _cliente);
@@ -157,10 +204,9 @@ namespace Exp.UWP.Views.Clientes
         private async void lv_enderecos_ItemClick(object sender, ItemClickEventArgs e)
         {
             var endereco = e.ClickedItem as ContaEnderecoViewModel;
-            ContaEnderecoContentDialog ce = new ContaEnderecoContentDialog(endereco);
+            ContaEnderecoContentDialog ce = new ContaEnderecoContentDialog(endereco, true);
             ce.SalvaEnderecoHandler += Ce_SalvaEnderecoHandler;
             await ce.ShowAsync();
-
         }
 
         private void MenuFlyoutItem_Click(object sender, RoutedEventArgs e)
