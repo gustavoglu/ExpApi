@@ -2,10 +2,12 @@
 using Exp.Application.Interfaces;
 using Exp.Domain.Interfaces.UoW;
 using Exp.Domain.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Exp.Services.Api.Controllers
 {
+    [AllowAnonymous]
     [Route("api/[controller]")]
     public class ContasController : BaseController
     {

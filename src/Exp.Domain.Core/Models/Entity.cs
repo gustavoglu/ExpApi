@@ -9,14 +9,14 @@ namespace Exp.Domain.Core.Models
             this.Id = Guid.NewGuid();
         }
 
-        public Guid? Id { get; protected set; }
-        public string CriadoPor { get; protected set; }
-        public DateTime? CriadoEm { get; protected set; }
-        public string AtualizadoPor { get; protected set; }
-        public DateTime? AtualizadoEm { get; protected set; }
-        public string DeletadoPor { get; protected set; }
-        public DateTime? DeletadoEm { get; protected set; }
-        public bool Deletado { get; protected set; } = false;
+        public Guid? Id { get; set; }
+        public string CriadoPor { get; set; }
+        public DateTime? CriadoEm { get; set; }
+        public string AtualizadoPor { get; set; }
+        public DateTime? AtualizadoEm { get; set; }
+        public string DeletadoPor { get; set; }
+        public DateTime? DeletadoEm { get; set; }
+        public bool Deletado { get; set; } = false;
 
         public void SetId(Guid id)
         {

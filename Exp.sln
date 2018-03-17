@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Blend for Visual Studio 15
+# Visual Studio 15
 VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Domain", "1 - Domain", "{5CF78B0B-4AF8-4A4C-99B9-6B1D41D0F1B3}"
@@ -13,21 +13,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Application", "3 - Appl
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Infra", "2 - Infra", "{9E0BFB51-7EE4-43FA-8877-31CB483D03F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exp.Domain", "src\Exp.Domain\Exp.Domain.csproj", "{3975F07C-F0F0-4EDE-9C27-9F43011CE3EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exp.Domain", "src\Exp.Domain\Exp.Domain.csproj", "{3975F07C-F0F0-4EDE-9C27-9F43011CE3EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exp.Domain.Core", "src\Exp.Domain.Core\Exp.Domain.Core.csproj", "{84383E2C-CBF0-430E-B038-237BDC828B54}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exp.Domain.Core", "src\Exp.Domain.Core\Exp.Domain.Core.csproj", "{84383E2C-CBF0-430E-B038-237BDC828B54}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exp.Infra.Data", "src\Exp.Infra.Data\Exp.Infra.Data.csproj", "{EB63387C-7BE4-47F7-BD00-3EA7DD00EE34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exp.Infra.Data", "src\Exp.Infra.Data\Exp.Infra.Data.csproj", "{EB63387C-7BE4-47F7-BD00-3EA7DD00EE34}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exp.Infra.IoC", "src\Exp.Infra.IoC\Exp.Infra.IoC.csproj", "{05A14614-1162-4C36-B97C-22779BD832B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exp.Infra.IoC", "src\Exp.Infra.IoC\Exp.Infra.IoC.csproj", "{05A14614-1162-4C36-B97C-22779BD832B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exp.Infra.Identity", "src\Exp.Infra.Identity\Exp.Infra.Identity.csproj", "{61B91167-E989-4277-A4A4-66BF5E7AC05B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exp.Infra.Identity", "src\Exp.Infra.Identity\Exp.Infra.Identity.csproj", "{61B91167-E989-4277-A4A4-66BF5E7AC05B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exp.Application", "src\Exp.Application\Exp.Application.csproj", "{4F1339C0-5074-41E2-9203-2A2AC4A394C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exp.Application", "src\Exp.Application\Exp.Application.csproj", "{4F1339C0-5074-41E2-9203-2A2AC4A394C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exp.Services.Api", "src\Exp.Services.Api\Exp.Services.Api.csproj", "{C5382466-7A3F-424B-A948-C53E72493B50}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exp.UWP", "src\Exp.UWP\Exp.UWP.csproj", "{FCE6C9D0-3336-4377-B69D-1CC9EDCFA3FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exp.Services.Api", "src\Exp.Services.Api\Exp.Services.Api.csproj", "{C5382466-7A3F-424B-A948-C53E72493B50}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -153,26 +151,6 @@ Global
 		{C5382466-7A3F-424B-A948-C53E72493B50}.Release|x64.Build.0 = Release|Any CPU
 		{C5382466-7A3F-424B-A948-C53E72493B50}.Release|x86.ActiveCfg = Release|Any CPU
 		{C5382466-7A3F-424B-A948-C53E72493B50}.Release|x86.Build.0 = Release|Any CPU
-		{FCE6C9D0-3336-4377-B69D-1CC9EDCFA3FE}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{FCE6C9D0-3336-4377-B69D-1CC9EDCFA3FE}.Debug|ARM.ActiveCfg = Debug|ARM
-		{FCE6C9D0-3336-4377-B69D-1CC9EDCFA3FE}.Debug|ARM.Build.0 = Debug|ARM
-		{FCE6C9D0-3336-4377-B69D-1CC9EDCFA3FE}.Debug|ARM.Deploy.0 = Debug|ARM
-		{FCE6C9D0-3336-4377-B69D-1CC9EDCFA3FE}.Debug|x64.ActiveCfg = Debug|x64
-		{FCE6C9D0-3336-4377-B69D-1CC9EDCFA3FE}.Debug|x64.Build.0 = Debug|x64
-		{FCE6C9D0-3336-4377-B69D-1CC9EDCFA3FE}.Debug|x64.Deploy.0 = Debug|x64
-		{FCE6C9D0-3336-4377-B69D-1CC9EDCFA3FE}.Debug|x86.ActiveCfg = Debug|x86
-		{FCE6C9D0-3336-4377-B69D-1CC9EDCFA3FE}.Debug|x86.Build.0 = Debug|x86
-		{FCE6C9D0-3336-4377-B69D-1CC9EDCFA3FE}.Debug|x86.Deploy.0 = Debug|x86
-		{FCE6C9D0-3336-4377-B69D-1CC9EDCFA3FE}.Release|Any CPU.ActiveCfg = Release|x86
-		{FCE6C9D0-3336-4377-B69D-1CC9EDCFA3FE}.Release|ARM.ActiveCfg = Release|ARM
-		{FCE6C9D0-3336-4377-B69D-1CC9EDCFA3FE}.Release|ARM.Build.0 = Release|ARM
-		{FCE6C9D0-3336-4377-B69D-1CC9EDCFA3FE}.Release|ARM.Deploy.0 = Release|ARM
-		{FCE6C9D0-3336-4377-B69D-1CC9EDCFA3FE}.Release|x64.ActiveCfg = Release|x64
-		{FCE6C9D0-3336-4377-B69D-1CC9EDCFA3FE}.Release|x64.Build.0 = Release|x64
-		{FCE6C9D0-3336-4377-B69D-1CC9EDCFA3FE}.Release|x64.Deploy.0 = Release|x64
-		{FCE6C9D0-3336-4377-B69D-1CC9EDCFA3FE}.Release|x86.ActiveCfg = Release|x86
-		{FCE6C9D0-3336-4377-B69D-1CC9EDCFA3FE}.Release|x86.Build.0 = Release|x86
-		{FCE6C9D0-3336-4377-B69D-1CC9EDCFA3FE}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -185,7 +163,6 @@ Global
 		{61B91167-E989-4277-A4A4-66BF5E7AC05B} = {9E0BFB51-7EE4-43FA-8877-31CB483D03F1}
 		{4F1339C0-5074-41E2-9203-2A2AC4A394C2} = {83696834-CB78-42C1-B243-BBE4BCB9A989}
 		{C5382466-7A3F-424B-A948-C53E72493B50} = {4D3F9EBD-C334-4843-B86F-96C84F3F905F}
-		{FCE6C9D0-3336-4377-B69D-1CC9EDCFA3FE} = {DB550402-1C90-416B-A0AA-D526064E6332}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B1B8454C-C07D-42A9-8451-2F89F1D0300F}
