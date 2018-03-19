@@ -1,0 +1,32 @@
+﻿<ContentDialog
+    x:Class="Exp.UWP.Views.Endereco.ContaEnderecoContentDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Exp.UWP.Views.Endereco"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="{x:Bind TituloDialog}"
+    PrimaryButtonText="Salvar"
+    SecondaryButtonText="Cancelar"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    SecondaryButtonClick="ContentDialog_SecondaryButtonClick">
+
+    <Grid MinWidth="300" >
+        <ScrollViewer>
+            <StackPanel>
+                <TextBlock x:Name="t_titulo" Text="{x:Bind Titulo}" Margin="5" Style="{ThemeResource SubheaderTextBlockStyle}"></TextBlock>
+                <TextBox x:Name="tb_rua" Text="{x:Bind _contaEndereco.Rua ,Mode=TwoWay}" Header="Rua"  HorizontalAlignment="Stretch" Margin="5"/>
+                <TextBox x:Name="tb_numero" Text="{x:Bind _contaEndereco.Numero ,Mode=TwoWay}" Header="Numero"  HorizontalAlignment="Stretch" Margin="5"/>
+                <TextBox x:Name="tb_complemento" Text="{x:Bind _contaEndereco.Complemento,Mode=TwoWay}" Header="Complemento"  HorizontalAlignment="Stretch" Margin="5"/>
+                <TextBox x:Name="tb_bairro" Text="{x:Bind _contaEndereco.Bairro,Mode=TwoWay}" Header="Bairro"  HorizontalAlignment="Stretch" Margin="5"/>
+                <TextBox x:Name="tb_cidade" Text="{x:Bind _contaEndereco.Cidade,Mode=TwoWay}" Header="Cidade"  HorizontalAlignment="Stretch" Margin="5"/>
+                <TextBox x:Name="tb_estado" Text="{x:Bind _contaEndereco.Estado,Mode=TwoWay}" Header="Estado" HorizontalAlignment="Stretch" Margin="5"/>
+                <TextBox x:Name="tb_pais" Text="{x:Bind _contaEndereco.Pais,Mode=TwoWay}" Header="Pais" HorizontalAlignment="Stretch" Margin="5"/>
+            </StackPanel>
+        </ScrollViewer>
+        <ProgressRing IsActive="false" MinWidth="100" MinHeight="100" />
+        <Grid Background="Transparent" Visibility="Collapsed" >
+        </Grid>
+    </Grid>
+</ContentDialog>
