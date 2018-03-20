@@ -6,8 +6,8 @@ namespace Exp.UWP.Interfaces
 {
     public interface IWSEntityService<T> where T : Entity
     {
-        Task Cria(T entity);
-        Task Atualiza(T entity);
-        Task Deleta(Guid id);
+        Task<bool> Cria(T entity);
+        Task<bool> Atualiza(T entity);
+        Task<bool> Deleta(Guid id);
     }
 }

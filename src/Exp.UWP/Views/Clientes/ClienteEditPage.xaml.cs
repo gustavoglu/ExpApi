@@ -105,7 +105,7 @@ namespace Exp.UWP.Views.Clientes
 
             Cliente cliente = await GetCliente(Guid.Parse("34871E1C-A6E2-422B-9BB9-75FF4B030B24"));
 
-            var Edit = cliente != null;
+            Edit = cliente != null;
 
             if (Edit)
             {
@@ -165,11 +165,15 @@ namespace Exp.UWP.Views.Clientes
 
         private async void Ce_SalvaEnderecoHandler(object sender, Handlers.Enderecos.ContaEnderecoHandler args)
         {
+            var contaEndereco = args.ContaEndereco;
+            var contaEnderecoViewModel = args.ContaEnderecoViewModel;
+
             var wsEntityService = new WSEntityService<ContaEndereco>(Constantes.SERVER_CONTAS_ENDERECO);
 
             if (!args.Edit && !Edit)
             {
-                enderecos.Add(new ContaEnderecoViewModel(args.ContaEndereco));
+                contaEnderecoViewModel.EndEdit();
+                Enderecos.Add(contaEnderecoViewModel);
                 return;
             }
 
@@ -177,20 +181,28 @@ namespace Exp.UWP.Views.Clientes
 
             if (Edit && args.Edit)
             {
-                await wsEntityService.Atualiza(args.ContaEndereco);
+                args.ContaEnderecoViewModel.EndEdit();
+                var result = await wsEntityService.Atualiza(args.ContaEndereco);
+                if (!result)
+                    Enderecos.FirstOrDefault(e => e.Id == args.ContaEnderecoViewModel.Id).CancelEdit();
                 return;
             }
 
             if (Edit && !args.Edit)
             {
-                args.ContaEndereco.Id_conta = clienteViewModel.Cliente.Id.Value;
-                await wsEntityService.Cria(args.ContaEndereco);
+                contaEnderecoViewModel.EndEdit();
+                contaEndereco.Id_conta = clienteViewModel.Cliente.Id.Value;
+                var result = await wsEntityService.Cria(contaEndereco);
+                if (result) Enderecos.Add(contaEnderecoViewModel);
                 return;
             }
         }
 
         private async void Cc_SalvaContatoHandler(object sender, Handlers.Contatos.ContaContatoHandler args)
         {
+            var vm = args.ContaContatoViewModel;
+            var contato = args.ContaContato;
+
             var wsEntityService = new WSEntityService<ContaContato>(Constantes.SERVER_CONTAS_CONTATO);
 
             if (!args.Edit && !Edit)
@@ -199,30 +211,20 @@ namespace Exp.UWP.Views.Clientes
                 return;
             }
 
-            if (args.Edit && !Edit)
-            {
-                var contatoOld = contatos.FirstOrDefault(c => c.ContaContato.Id == args.ContaContato.Id);
-                contatoOld = new ContaContatoViewModel(args.ContaContato);
-            };
+            if (args.Edit && !Edit) return;
 
             if (Edit && args.Edit)
             {
-                await wsEntityService.Atualiza(args.ContaContato);
+                var result = await wsEntityService.Atualiza(args.ContaContato);
+                if (!result) vm.CancelEdit();
                 return;
             }
 
             if (Edit && !args.Edit)
             {
-                args.ContaContato.Id_conta = clienteViewModel.Cliente.Id.Value;
-                try
-                {
-                    await wsEntityService.Cria(args.ContaContato);
-                    var contatoOld = contatos.FirstOrDefault(c => c.ContaContato.Id == args.ContaContato.Id);
-                    contatoOld = new ContaContatoViewModel(args.ContaContato);
-
-                }
-                catch { }
-
+                contato.Id_conta = clienteViewModel.Cliente.Id.Value;
+                var result = await wsEntityService.Cria(contato);
+                if (result) Contatos.Add(vm);
                 return;
             }
         }

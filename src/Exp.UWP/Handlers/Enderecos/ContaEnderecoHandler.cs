@@ -1,16 +1,18 @@
 ﻿using Exp.Domain.Models;
+using Exp.UWP.ViewModels;
 using System;
 
 namespace Exp.UWP.Handlers.Enderecos
 {
     public class ContaEnderecoHandler : EventArgs
     {
-        public ContaEndereco ContaEndereco { get; private set; }
+        public ContaEnderecoViewModel ContaEnderecoViewModel { get; private set; }
+        public ContaEndereco ContaEndereco { get { return ContaEnderecoViewModel.ContaEndereco; } }
         public bool Edit { get; private set; }
-  
-        public ContaEnderecoHandler(ContaEndereco contaEndereco, bool edit = false)
+
+        public ContaEnderecoHandler(ContaEnderecoViewModel contaEnderecoViewModel, bool edit)
         {
-            ContaEndereco = contaEndereco;
+            ContaEnderecoViewModel = contaEnderecoViewModel;
             Edit = edit;
         }
     }

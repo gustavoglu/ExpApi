@@ -21,6 +21,7 @@ namespace Exp.UWP.Views.Contatos
         {
             AtribuiTituloDialog(contato);
             _contaContato = contato ?? new ContaContatoViewModel (new ContaContato(Guid.Empty));
+            _contaContato.BeginEdit();
             _edit = edit;
             this.InitializeComponent();
         }
@@ -40,7 +41,7 @@ namespace Exp.UWP.Views.Contatos
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            SalvaContatoHandler(this, new ContaContatoHandler(_contaContato.ContaContato,_edit));
+            SalvaContatoHandler(this, new ContaContatoHandler(_contaContato,_edit));
         }
 
         private void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)

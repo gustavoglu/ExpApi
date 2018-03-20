@@ -39,7 +39,7 @@
                 <PivotItem Header="Endereços">
                     <PivotItem.Content>
                         <RelativePanel x:Name="rp_enderecos">
-                            <ListView x:Name="lv_enderecos" ItemsSource="{x:Bind Enderecos}" IsItemClickEnabled="True">
+                            <ListView x:Name="lv_enderecos" ItemsSource="{x:Bind Enderecos}" ItemClick="lv_enderecos_ItemClick" IsItemClickEnabled="True">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <Border>
@@ -63,8 +63,8 @@
 
                                 </ListView.ItemTemplate>
                             </ListView>
-                            <CommandBar x:Name="cmdb_enderecos" Background="Transparent" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
-                                <AppBarButton x:Name="abb_novoEndereco" HorizontalAlignment="Right" Icon="Add"/>
+                            <CommandBar x:Name="cmdb_enderecos" Background="Transparent"  RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+                                <AppBarButton x:Name="abb_novoEndereco" HorizontalAlignment="Right" Icon="Add" Click="abb_novoEndereco_Click"/>
                             </CommandBar>
                         </RelativePanel>
                     </PivotItem.Content>
@@ -72,7 +72,7 @@
                 <PivotItem Header="Contatos">
                     <PivotItem.Content>
                         <RelativePanel x:Name="rp_contatos">
-                            <ListView x:Name="lv_contatos" ItemsSource="{x:Bind Contatos}" HorizontalContentAlignment="Stretch" IsItemClickEnabled="True">
+                            <ListView x:Name="lv_contatos" ItemsSource="{x:Bind Contatos}" ItemClick="lv_contatos_ItemClick" HorizontalContentAlignment="Stretch" IsItemClickEnabled="True">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
@@ -86,7 +86,7 @@
                                 </ListView.ItemTemplate>
                             </ListView>
                             <CommandBar x:Name="cmdb_contatos"  IsOpen="True" Background="Transparent" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
-                                <AppBarButton x:Name="abb_novoContato" HorizontalAlignment="Right" Icon="Add"/>
+                                <AppBarButton x:Name="abb_novoContato" HorizontalAlignment="Right" Icon="Add" Click="abb_novoContato_Click"/>
                             </CommandBar>
                         </RelativePanel>
                     </PivotItem.Content>

@@ -1,6 +1,7 @@
 ﻿using Exp.Domain.Models;
 using Exp.UWP.Handlers.Enderecos;
 using Exp.UWP.ViewModels;
+using System;
 using Windows.UI.Xaml.Controls;
 
 // The Content Dialog item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -19,8 +20,9 @@ namespace Exp.UWP.Views.Endereco
         public ContaEnderecoContentDialog(ContaEnderecoViewModel contaEndereco = null, bool edit = false)
         {
             AtribuiTituloDialog();
-            _contaEndereco = contaEndereco ?? new ContaEnderecoViewModel( new ContaEndereco("","","","",""));
+            _contaEndereco = contaEndereco ?? new ContaEnderecoViewModel(new ContaEndereco("" ,"","","",""));
             _edit = edit;
+            _contaEndereco.BeginEdit();
             this.InitializeComponent();
         }
 
@@ -38,7 +40,7 @@ namespace Exp.UWP.Views.Endereco
         }
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            SalvaEnderecoHandler(this, new ContaEnderecoHandler(_contaEndereco.ContaEndereco, _edit));
+            SalvaEnderecoHandler(this, new ContaEnderecoHandler(_contaEndereco, _edit));
         }
 
         private void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
